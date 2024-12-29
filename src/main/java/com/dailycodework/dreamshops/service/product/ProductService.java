@@ -17,11 +17,12 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor // Constructor inyection
-//@RequiredArgsConstructor genera un constructor que incluye todos los campos final y los campos marcados
-// como @NonNull en una clase(puede cumplir una función similar si se utiliza con la inyección de dependencias
+//@RequiredArgsConstructor genera un constructor que incluye todos los campos final (private final ProductRepository productRepository;)
+// y los campos marcados como @NonNull en una clase(puede cumplir una función similar si se utiliza con la inyección de dependencias
 // por constructor en Spring.)En Spring, cuando tienes un constructor con dependencias, no necesitas explícitamente
-// la anotación @Autowired en el constructor. Spring es capaz de detectar automáticamente el constructor y utilizarlo
-// para inyectar las dependencias necesarias. Si se marcan las dependencias con final Spring las inyectará automaticamente
+// La anotación @Autowired en el constructor. Spring es capaz de detectar automáticamente el constructor y utilizarlo
+// para inyectar las dependencias necesarias. Si se marcan las dependencias con final Spring las inyectará automaticamente.
+
 //La anotación @Override le indica al compilador que el método anotado debe sobrescribir
 //un método con la misma firma en una superclase o interfaz. 
 
@@ -30,6 +31,7 @@ public class ProductService implements IProductService{
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 
+    //Realiza un validacion de la existencia de la categoria, sino la crea y posteriormente llama a la creacion de prodcuto
     @Override
     public Product addProduct(AddProductRequest request) {
         // check if the category is found in the DB
@@ -45,6 +47,8 @@ public class ProductService implements IProductService{
         return productRepository.save(createProduct(request, category));
     }
 
+    //Crear un producto al pasar por la funcion addProduct que realiza la validacion y luego addProduct se comunica con el repository
+    //Por eso es una funcion privada que no esta en la interface
     private Product createProduct(AddProductRequest request, Category category){
         return new Product(
             request.getName(),
@@ -77,6 +81,7 @@ public class ProductService implements IProductService{
             .orElseThrow(()-> new ProductNotFoundException("Product not found!"));
     }
 
+    //No esta en la interface
     private Product updateExistingProduct(Product existingProduct, ProductUpdateRequest request){
         existingProduct.setName(request.getName());
         existingProduct.setBrand(request.getBrand());

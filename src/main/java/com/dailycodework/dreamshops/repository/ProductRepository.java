@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.dailycodework.dreamshops.model.Product;
 
 //Cuando se usa JpaRepository o CrudRepository Spring gestiona la inyeccion de la dependencia sin usar el @Repository
+//Además ya contiene funciones basicas creadas como buscar por id y etc
+//Spring crea la bd con las entity, luego con el servicio se llama al repository que como vemos se le pasa con el JpaRepository una entidad y su tipo
+//Lo cual llama a la BD
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 

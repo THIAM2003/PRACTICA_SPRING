@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // de objtos y metodos sin necesidad de escribir SQL directamente
 //UN ORM ES UNA ESPECIFICACIÓN (COMO JPA) Y COMO SE HACE DICHA ESPECIFICACION(MAPEO ENTRE APP Y BD) 
 //ES UNA IMPLEMENTACION COMO HIBERNATE
-
+// @Autowired es para inyeccion de dependencias
 public class DreamShopsApplication {
 
 	public static void main(String[] args) {

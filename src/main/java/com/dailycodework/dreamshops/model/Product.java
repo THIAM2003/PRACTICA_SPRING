@@ -25,6 +25,7 @@ import lombok.Getter;
 
 public class Product {
 
+    //Aqui se crea la entidad a "nivel bd"
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,6 +42,7 @@ public class Product {
     @OneToMany(mappedBy= "product", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Image> images;
 
+    //Este constructor es para cuando se agregue o cree un producto, de forma que no tiene image
     public Product(String name, String brand, BigDecimal price, int inventory, String description, Category category){
         this.name = name;
         this.brand = brand;
