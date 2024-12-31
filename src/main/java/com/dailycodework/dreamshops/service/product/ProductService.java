@@ -16,15 +16,7 @@ import com.dailycodework.dreamshops.request.ProductUpdateRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor // Constructor inyection
-//@RequiredArgsConstructor genera un constructor que incluye todos los campos final (private final ProductRepository productRepository;)
-// y los campos marcados como @NonNull en una clase(puede cumplir una función similar si se utiliza con la inyección de dependencias
-// por constructor en Spring.)En Spring, cuando tienes un constructor con dependencias, no necesitas explícitamente
-// La anotación @Autowired en el constructor. Spring es capaz de detectar automáticamente el constructor y utilizarlo
-// para inyectar las dependencias necesarias. Si se marcan las dependencias con final Spring las inyectará automaticamente.
-
-//La anotación @Override le indica al compilador que el método anotado debe sobrescribir
-//un método con la misma firma en una superclase o interfaz. 
+@RequiredArgsConstructor 
 
 public class ProductService implements IProductService{
 
