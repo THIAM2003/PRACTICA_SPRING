@@ -41,6 +41,7 @@ public class ImageController {
     private final IImageService imageService;
 
     @PostMapping("/cargar")
+    // La anotación @RequestParam se utiliza para extraer parámetros de consulta (query parameters) de una solicitud HTTP
     public ResponseEntity<ApiResponse> saveImages(@RequestParam List<MultipartFile> files, @RequestParam Long productId){
         try {
             List<ImageDto> imageDtos = imageService.saveImages(files, productId);
@@ -52,15 +53,27 @@ public class ImageController {
     }
 
     @GetMapping("/image/download/{imageId}")
+    //Con PathVariable el parámetro imageId se extrae de la URL de la solicitud y se utiliza para identificar la imagen que el usuario desea descargar.
+    //Resource es una interfaz de Spring que representa un recurso externo. Puede ser un archivo, una URL, o incluso contenido en memoria
     public ResponseEntity<Resource> downloadImage(@PathVariable Long imageId) throws SQLException{
         Image image = imageService.getImageById(imageId);
-        ByteArrayResource resource = new ByteArrayResource(image.getImage().getBytes(1, (int) image.getImage().length()));
+        //El ByteArrayResource es una clase de la biblioteca Spring que se utiliza para representar datos binarios como un recurso en memoria. 
+        ByteArrayResource resource = new ByteArrayResource(image.getImage().getBytes(1, (int) image.getImage().length())); 
+        //Obtiene los bytes desde el indice 1 (el indice comienza en 1) hasta la longitud del objeto y se envuelven en un ByteArrayResource
+        //para que se puedan usar como un recurso compatible con Spring.
+        //Se devuelve la imagen como respuesta HTTP usando ResponseEntity
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(image.getFileType()))
-            .header(HttpHeaders.CONTENT_DISPOSITION , "Adjuntó; nombre del archivo =\"" + image.getFileName() + "\"")
+        // header(... ) Establece un encabezado HTTP para sugerir al cliente cómo manejar el archivo descargado
+        // Content-Disposition: Si contiene attachment;, el navegador descargará el archivo en lugar de mostrarlo.
+        // El navegador interpretará el encabezado Content-Disposition con el valor attachment.
+            .header(HttpHeaders.CONTENT_DISPOSITION , "attachment; nombre del archivo =\"" + image.getFileName() + "\"")
+        // body(resource) Establece el cuerpo de la respuesta con los datos binarios de la imagen encapsulados en el ByteArrayResource.
             .body(resource);
     }
 
     @PutMapping("/image/{imageId}/actualizar")
+    //El tipo de retorno ResponseEntity<ApiResponse> al inicio de la función indica que el método devolverá 
+    //una respuesta HTTP (ResponseEntity) que contiene un cuerpo de tipo ApiResponse
     public ResponseEntity<ApiResponse> updateImage(@PathVariable Long imageId, @RequestBody MultipartFile file) {
         try {
             Image image = imageService.getImageById(imageId);
