@@ -41,7 +41,12 @@ public class ImageController {
     private final IImageService imageService;
 
     @PostMapping("/cargar")
-    // La anotación @RequestParam se utiliza para extraer parámetros de consulta (query parameters) de una solicitud HTTP
+    // La anotación @RequestParam se utiliza para extraer parámetros de consulta (query parameters) de una solicitud HTTP o enviados con un formulario.
+    //Además son datos clave-valor en el cuerpo de una solicitud, es decir, los datos aparecen después de un ? y están separados por & 
+    //en el URL así:   GET  /api/products?category=electronics&sort=price
+    //(Lo use para guardar, es decir, para un POST) el cual tenia un Multipart(en solicitudes multipart/form-data, el cuerpo contiene partes
+    // mezcladas (archivos binarios y texto plano por lo que RequestBody no sirve)). 
+    //El @RequestBody se utiliza para extraer datos del cuerpo de la solicitud HTTP( Ya sean JSON o XML). Se usa para recibir un OBJETO completo o datos estructurados.
     public ResponseEntity<ApiResponse> saveImages(@RequestParam List<MultipartFile> files, @RequestParam Long productId){
         try {
             List<ImageDto> imageDtos = imageService.saveImages(files, productId);
