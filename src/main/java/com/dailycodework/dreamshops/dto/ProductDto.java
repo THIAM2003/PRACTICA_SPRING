@@ -8,7 +8,7 @@ import com.dailycodework.dreamshops.model.Category;
 import lombok.Data;
 
 @Data
-
+//DTO= Data transfer object
 public class ProductDto {
      private Long id;
     private String name;
