@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 //(Lo use para guardar, es decir, para un POST) el cual tenia un Multipart(en solicitudes multipart/form-data, el cuerpo contiene partes
 // mezcladas (archivos binarios y texto plano)).
 //El @RequestBody se utiliza para extraer datos del cuerpo de la solicitud HTTP( Ya sean JSON o XML). Se usa para recibir un OBJETO completo o datos estructurados.
+//Aquí, use Postman para enviar un objeto JSON y de ahi con @RequestBody se extraen los datos
 //Con PathVariable el parámetro imageId se extrae de la URL de la solicitud y se utiliza para identificar la imagen que el usuario desea descargar.
 //Resource es una interfaz de Spring que representa un recurso externo. Puede ser un archivo, una URL, o incluso contenido en memoria
 //El tipo de retorno ResponseEntity<ApiResponse> al inicio de la función indica que el método devolverá 
