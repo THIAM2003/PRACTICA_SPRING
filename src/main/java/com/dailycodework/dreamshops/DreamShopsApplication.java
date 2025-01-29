@@ -11,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // de objtos y metodos sin necesidad de escribir SQL directamente
 //UN ORM ES UNA ESPECIFICACIÓN (COMO JPA) Y COMO SE HACE DICHA ESPECIFICACION(MAPEO ENTRE APP Y BD) 
 //ES UNA IMPLEMENTACION COMO HIBERNATE
+//(Java Persistence API)es una especificación de Java que proporciona una forma estándar de gestionar la persistencia de datos en aplicaciones Java. 
+// La persistencia de datos se refiere al almacenamiento y recuperación de datos en una base de datos relacional.
 // @Autowired es para inyeccion de dependencias
 public class DreamShopsApplication {
 
