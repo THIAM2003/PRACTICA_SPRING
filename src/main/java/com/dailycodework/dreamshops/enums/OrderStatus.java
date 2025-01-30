@@ -1,5 +1,9 @@
 package com.dailycodework.dreamshops.enums;
 
-public class OrderStatus {
-
+public enum OrderStatus {
+    PENDIENTE,
+    PROCESANDO,
+    ENVIADO,
+    ENTREGAGO,
+    CANCELADO
 }
