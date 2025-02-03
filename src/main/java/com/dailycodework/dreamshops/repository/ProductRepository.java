@@ -10,6 +10,8 @@ import com.dailycodework.dreamshops.model.Product;
 //Además ya contiene funciones basicas creadas como buscar por id y etc
 //Spring crea la bd con las entity, luego con el servicio se llama al repository que como vemos se le pasa con el JpaRepository una entidad y su tipo
 //Lo cual llama a la BD
+//(Java Persistence API)es una especificación de Java que proporciona una forma estándar de gestionar la persistencia de datos en aplicaciones Java. 
+// La persistencia de datos se refiere al almacenamiento y recuperación de datos en una base de datos relacional.
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
