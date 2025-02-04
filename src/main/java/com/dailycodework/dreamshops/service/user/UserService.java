@@ -60,6 +60,7 @@ public class UserService implements IUserService {
         });
     }
 
+    //Aqui escribe este metodo como public ya que es un metodo que se va a utilizar en otra clase al llamar a getUserById
     @Override
     public UserDto convertUserToDto(User user) {
         return modelMapper.map(user, UserDto.class);
