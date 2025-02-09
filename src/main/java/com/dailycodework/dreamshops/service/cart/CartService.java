@@ -40,6 +40,12 @@ public class CartService implements ICartService {
         cartItemRepository.deleteAllByCartId(id);
         //Elimina todos los elementos del carro en memoria.
         cart.getItems().clear();
+
+        // Break the relationship
+        User user = cart.getUser();
+        if (user != null) {
+            user.setCart(null); // Detach the Cart from User
+        }
         cartRepository.deleteById(id);
     }
 
