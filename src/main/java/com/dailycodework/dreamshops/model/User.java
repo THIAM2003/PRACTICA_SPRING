@@ -1,14 +1,18 @@
 package com.dailycodework.dreamshops.model;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -42,4 +46,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = 
+        {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private Collection<Role> roles = new HashSet<>();
+    
 }
