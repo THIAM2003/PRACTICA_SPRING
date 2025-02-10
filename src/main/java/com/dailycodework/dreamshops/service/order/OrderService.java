@@ -19,6 +19,7 @@ import com.dailycodework.dreamshops.repository.OrderRespository;
 import com.dailycodework.dreamshops.repository.ProductRepository;
 import com.dailycodework.dreamshops.service.cart.CartService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -31,6 +32,7 @@ public class OrderService implements IOrderService {
     private final CartService cartService;
     private final ModelMapper modelMapper;
     
+    @Transactional
     @Override
     public Order placeOrder(Long userId) {
         Cart cart = cartService.getCartByUserId(userId);
