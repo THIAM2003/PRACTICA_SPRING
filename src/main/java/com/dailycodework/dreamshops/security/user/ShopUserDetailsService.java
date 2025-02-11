@@ -1,14 +1,29 @@
 package com.dailycodework.dreamshops.security.user;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.dailycodework.dreamshops.model.User;
+import com.dailycodework.dreamshops.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
 
 public class ShopUserDetailsService implements UserDetailsService{
 
+    private final UserRepository userRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = Optional.ofNullable(userRepository.findByEmail(email))
+            .orElseThrow(() -> new UsernameNotFoundException("Usiario no encontrado"));
+        return ShopUserDetails.buildUserDetails(user);
     }
 
 }
