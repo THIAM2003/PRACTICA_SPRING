@@ -28,6 +28,10 @@ public class Role {
         this.name = name;
     }
 
+    //Esto genera la relación en la tabla muchos a muchos de user-role con la clave foranea
+    // pero no crea nuevos campos en la tabla role
+    // mappedBy Se utiliza en la entidad inversa (Aquí) para indicar la propiedad que posee la clave foránea 
+    // en la entidad propietaria.
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users = new HashSet<>();
 }

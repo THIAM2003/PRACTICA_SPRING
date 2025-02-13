@@ -16,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
+// Order no necesita @AllArgsConstructor porque Hibernate lo instancia y llena sus valores automáticamente.
 
 public class Order {
 

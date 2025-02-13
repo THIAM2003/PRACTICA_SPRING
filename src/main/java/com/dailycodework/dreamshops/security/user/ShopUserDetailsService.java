@@ -19,6 +19,8 @@ public class ShopUserDetailsService implements UserDetailsService{
 
     private final UserRepository userRepository;
 
+    // Servicio que en caso que el email este registrado en la BD, crea una instancia de UserDetails
+    // Es decir, obtiene los roles y da autorizaciones llamando a buildUserDetails
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = Optional.ofNullable(userRepository.findByEmail(email))
