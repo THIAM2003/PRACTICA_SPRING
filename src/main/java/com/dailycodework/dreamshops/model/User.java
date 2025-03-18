@@ -57,5 +57,5 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private Collection<Role> roles = new HashSet<>();
-    
+    //roles es la clave foranea de Role aquí, por tanto con el inverseJoinColumns hacemos referencia al 'id' en la entidad Role acutanto como el constraint
 }
